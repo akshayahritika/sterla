@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>STERLA</title>
+<style>
+/* Your existing CSS unchanged for brevity */
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+html,body{height:100%;}
+body{
+background:linear-gradient(135deg,#d9e6ff,#ffffff);
+font-size:16px;
+overflow:hidden; /* body won't scroll; main will */
+}
+#loginPage{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;padding:30px;}
+.login-container {
+width: 300px;
+margin: 120px auto;
+padding: 25px;
+border-radius: 10px;
+background: #fafafa;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+text-align: center;
+}
+.login-container input {
+width: 90%;
+padding: 10px;
+margin: 10px 0;
+border-radius: 8px;
+border: 1px solid #888;
+}
+.login-container button {
+padding: 10px 40px;
+margin-top: 10px;
+border: none;
+border-radius: 8px;
+background: #1976d2;
+color: white;
+cursor: pointer;
+}
+#loginMessage {
+margin-top: 10px;
+font-size: 14px;
+}
+#appPage{
+display:none; /* shown after login */
+width:100%;
+height:100vh;
+display:flex;
+overflow:hidden;
+background:linear-gradient(135deg,#d9e6ff,#ffffff);
+}
+.glass{background:rgba(255,255,255,0.35);backdrop-filter:blur(12px);border-radius:18px;border:1px solid rgba(255,255,255,0.4);box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+#sidebar{width:260px;height:100vh;background:#1346b5c4;color:white;padding:25px;position:fixed;left:0;top:0;overflow:auto;}
+#sidebar h2{font-size:26px;margin-bottom:25px;}
+.nav-btn{width:100%;padding:12px;margin:8px 0;background:rgba(255,255,255,0.2);border:none;border-radius:12px;text-align:left;color:white;cursor:pointer;font-size:16px;transition:0.3s;}
+.nav-btn:hover{background:rgba(255,255,255,0.35);}
+#main{margin-left:280px;padding:30px;width:calc(100% - 280px);height:100vh;overflow-y:auto;}
+.page{display:none;}
+.active{display:block;}
+#welcomeBox{width:100%;max-width:1100px;padding:30px;margin-top:25px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+#welcomeBox img{width:160px;filter: invert(25%);margin-top:10px;}
+.subject-card{padding:18px;margin:12px;background:white;border-radius:15px;display:inline-block;cursor:pointer;width:150px;text-align:center;border:2px solid #1346b5;transition:0.3s;vertical-align:top;}
+.subject-card:hover{background:#1346b5;color:white;}
+.topic-btn{padding:12px;border-radius:12px;background:#1346b5;color:white;border:none;margin:5px;cursor:pointer;}
+.output-box{margin-top:20px;padding:25px;border-radius:15px;background:white;min-height:200px;}
+.announce{background:white;padding:12px;border-radius:12px;margin:10px 0;}
+.teacher-only{display:none;}
+.mindmap{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:20px;min-height:300px;position:relative;}
+.flow-box {
+position:absolute;
+width:180px;
+padding:15px;
+background:#ffffff;
+border:2px solid #1445b5;
+border-radius:10px;
+text-align:center;
+font-weight:600;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+.flow-line {
+stroke:#1445b5;
+stroke-width:3;
+}
+.flow-arrow {
+fill:#1445b5;
+}
+#chatBox{border:1px solid #ccc;padding:15px;height:400px;overflow-y:auto;border-radius:12px;margin-bottom:10px;background:white;}
+#chatBox div{margin-bottom:8px;}
+#chatInput{width:80%;padding:10px;border-radius:8px;border:1px solid #ccc;}
+#chatBtn{padding:10px;border-radius:8px;background:#1346b5;color:white;border:none;cursor:pointer;}
+#chatBtn:hover{background:#1d3270;}
+@media (max-width:800px){
+#sidebar{display:none;}
+#main{margin-left:0;width:100%;}
+#welcomeBox{padding:18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+  <div class="login-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <p id="loginMessage"></p>
+  </div>
+  <div class="login-left">
+    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png" class="doodle" id="pencil" />
+    <img src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" class="doodle" id="book" />
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" class="doodle" id="star" />
+    <div class="logo-title">STERLA</div>
+    <div class="logo-sub">Your All-in-One Smart School Companion</div>
+  </div>
+  <div class="login-right">
+    <h2>Login</h2>
+    <div class="inputBox"><input type="text" id="usernameLogin" placeholder="Enter your name" /></div>
+    <div class="inputBox">
+      <button id="studentLogin">Login as Student</button>
+      <button id="teacherLogin">Login as Teacher</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP PAGE -->
+<div id="appPage">
+  <div id="sidebar">
+    <h2>STERLA</h2>
+    <button class="nav-btn" onclick="showPage('homePage')">🏠 Home</button>
+    <button class="nav-btn" onclick="showPage('dashboard')">📢 Dashboard</button>
+    <button class="nav-btn" onclick="showPage('subjectsPage')">📘 Subjects</button>
+    <button class="nav-btn" onclick="showPage('mindmap')">🧠 Mind Map</button>
+    <button class="nav-btn" onclick="showPage('quizPage')">📝 Quiz</button>
+    <button class="nav-btn" onclick="showPage('wsPage')">📄 Worksheet</button>
+    <button class="nav-btn teacher-only" onclick="showPage('managePage')">⚙️ Teacher Panel</button>
+    <button class="nav-btn" onclick="showPage('aiChatPage')">🤖 AI Chat</button>
+  </div>
+
+  <div id="main">
+    <div id="homePage" class="page active">
+      <h1 id="welcomeUser"></h1>
+      <div id="welcomeBox" class="glass">
+        <div>
+          <h2>Your learning companion</h2>
+          <p>Choose a subject → pick a topic → get mindmap / quiz / worksheet!</p>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942943.png" alt="school icon" />
+      </div>
+      <div style="margin-top:18px;">
+        <h3>Quick Subjects</h3>
+        <div id="subjectsQuick"></div>
+      </div>
+    </div>
+
+    <div id="dashboard" class="page">
+      <h1>Dashboard</h1>
+      <h2>Announcements</h2>
+      <div class="announce">• Chemistry worksheet due Monday</div>
+      <div class="announce">• Biology test next Friday</div>
+      <div class="announce">• Math homework submission closes tonight</div>
+    </div>
+
+    <div id="subjectsPage" class="page">
+      <h1>Select a Subject</h1>
+      <div id="subjectsContainer"></div>
+    </div>
+
+    <div id="topicPage" class="page">
+      <h1 id="topicTitle"></h1>
+      <div id="topicButtons"></div>
+    </div>
+
+    <div id="mindmap" class="page">
+      <h2>Flowchart Generator</h2>
+      <label for="mmTopic">Select Topic:</label>
+      <select id="mmTopic"><option value="">Choose topic</option></select>
+      <button onclick="loadFlowchart()">Generate Flowchart</button>
+      <div id="flowArea" style="width:100%; height:600px; border:1px solid #ccc; border-radius:10px; background:white; margin-top:20px; position:relative; overflow:auto;">
+        <svg id="flowSVG" width="2000" height="2000" style="position:absolute; top:0; left:0;"></svg>
+      </div>
+    </div>
+
+    <div id="quizPage" class="page">
+      <h1>Quiz</h1>
+      <div class="output-box" id="quizOutput"></div>
+    </div>
+
+    <div id="wsPage" class="page">
+      <h1>Worksheet</h1>
+      <div class="output-box" id="wsOutput"></div>
+    </div>
+
+    <div id="managePage" class="page teacher-only">
+      <h1>Teacher Panel</h1>
+      <p>Here you can upload worksheets, add quizzes, view submissions, manage announcements.</p>
+    </div>
+
+    <div id="aiChatPage" class="page">
+      <h1>AI Chat Assistant</h1>
+      <div id="chatBox"></div>
+      <input type="text" id="chatInput" placeholder="Ask me anything..." />
+      <button id="chatBtn">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const loginPage = document.getElementById("loginPage");
+const appPage = document.getElementById("appPage");
+const studentLogin = document.getElementById("studentLogin");
+const teacherLogin = document.getElementById("teacherLogin");
+const welcomeUser = document.getElementById("welcomeUser");
+const chatBtn = document.getElementById("chatBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBox = document.getElementById("chatBox");
+const mmTopicSelect = document.getElementById("mmTopic");
+
+let selectedSubject = "";
+let chosenTopic = "";
+
+// --- Login Functions ---
+function login() {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("loginMessage");
+  if (username === "" || password === "") {
+    msg.textContent = "Please enter both username and password.";
+    msg.style.color = "red";
+    return;
+  }
+  if (username === "admin" && password === "1234") {
+    msg.textContent = "Login successful!";
+    msg.style.color = "green";
+    loginPage.style.display = "none";
+    appPage.style.display = "flex";
+  } else {
+    msg.textContent = "Invalid credentials. Try again.";
+    msg.style.color = "red";
+  }
+}
+studentLogin.onclick = () => doLogin("student");
+teacherLogin.onclick = () => doLogin("teacher");
+function doLogin(role) {
+  const name = document.getElementById("usernameLogin").value.trim();
+  if (!name) {
+    alert("Enter name");
+    return;
+  }
+  loginPage.style.display = "none";
+  appPage.style.display = "flex";
+  welcomeUser.innerText = "Welcome, " + name + " 👋";
+  if (role === "teacher") {
+    document.querySelectorAll(".teacher-only").forEach((el) => el.style.display = "block");
+  } else {
+    document.querySelectorAll(".teacher-only").forEach((el) => el.style.display = "none");
+  }
+}
+
+// --- Data ---
+const subjectTopics = {
+  English: ["Grammar","Formal Letter","Speech","Prose"],
+  Math: ["Algebra","Linear Equations","Mensuration"],
+  Science: ["Reproduction in Animals","Sound","Electricity"],
+  "Social Science": ["1857 Revolt","Resources","Judiciary"],
+  Hindi: ["Vyakaran","Patra Lekhan"],
+  Computer: ["HTML","AI Basics"],
+  Sanskrit: ["Shabd Roop","Dhatu Roop"],
+  French: ["French Grammar","Culture"],
+  ICT: ["Networks","Cybersecurity"],
+};
+
+const detailedFlowData = {
+  English: {
+    Grammar: ["Parts of Speech", "Sentence Structure", "Tenses","Punctuation","Usage Rules"],
+    "Formal Letter": ["Sender Address","Date","Receiver Address","Subject","Salutation","Body Paragraphs","Closing"],
+    Speech: ["Introduction","Body Points","Conclusion","Eye Contact","Gestures","Voice Modulation"],
+    Prose: ["Paragraphs","Characters","Storyline","Dialogue","Narrative Flow"],
+  },
+  Science: {
+    "Reproduction in Animals": ["Sexual Reproduction","Asexual Reproduction","Human Systems","Fertilization","Development"],
+    Sound: ["Vibration generation","Propagation through medium","Reception by ear","Brain interprets sound"],
+    Electricity: ["Electric charge flow","Ohm’s Law: V=IR","Series and Parallel Circuits","Safety Devices"],
+  },
+  Math: {
+    Algebra: ["Expressions","Equations","Formulas","Solving unknowns","Linear & Quadratic"],
+    "Linear Equations": ["Variables","Equation Form","Graph Representation","Substitution","Elimination"],
+    Mensuration: ["Area","Perimeter","Volume","Surface Area","Formulas"],
+  },
+  // add other subjects/topics as needed
+};
+
+// --- Quiz Bank (10 MCQs per subject-topic) ---
+const quizBank = {
+  English: {
+    Grammar: [
+      { q:"Which of the following is a noun?", options:["run","dog","quickly","beautiful"], answer:"dog" },
+      { q:"Identify the verb in the sentence.", options:["is","happy","table","red"], answer:"is" },
+      { q:"What is an adjective?", options:["A describing word","A doing word","A place","A person"], answer:"A describing word" },
+      { q:"Choose the correct plural form of 'mouse'.", options:["mouses","mice","mouse","moose"], answer:"mice" },
+      { q:"Which is a token of proper noun?", options:["India","city","mountain","river"], answer:"India" },
+      { q:"Select the adverb:", options:["happy","runs","quickly","car"], answer:"quickly" },
+      { q:"Which sentence is in past tense?", options:["He runs","He ran","He run","He running"], answer:"He ran" },
+      { q:"Identify the pronoun in the sentence.", options:["dog","he","run","quick"], answer:"he" },
+      { q:"Find the preposition:", options:["on","run","quick","big"], answer:"on" },
+      { q:"Pick the conjunction:", options:["and","run","quickly","big"], answer:"and" },
+    ],
+    "Formal Letter": [
+      { q:"Which salutation is correct?", options:["Dear Sir","Hi buddy","Hey","Yo"], answer:"Dear Sir" },
+      { q:"Where does the date appear?", options:["Top right","Bottom left","Middle","Nowhere"], answer:"Top right" },
+      { q:"A formal letter should be:", options:["friendly","casual","professional","slangy"], answer:"professional" },
+      { q:"The closing of a formal letter is:", options:["Cheers","Yours sincerely","See ya","Bye"], answer:"Yours sincerely" },
+      { q:"Which is appropriate address?", options:["Mr. Smith","Buddy","Dude","Bro"], answer:"Mr. Smith" },
+      { q:"Subject line comes:", options:["After date","At top","Before salutation","Middle"], answer:"Before salutation" },
+      { q:"In formal letters, use:", options:["full sentences","slang","short forms","random"], answer:"full sentences" },
+      { q:"The body of letter contains:", options:["message","pictures","songs","jokes"], answer:"message" },
+      { q:"Use polite tone:", options:["Yes","No","Sometimes","Maybe"], answer:"Yes" },
+      { q:"Formal letter format is:", options:["block","handwritten","script","random"], answer:"block" },
+    ],
+  },
+  Math: {
+    Algebra: [
+      { q:"Solve x + 5 = 12", options:["x=7","x=17","x=5","x=12"], answer:"x=7" },
+      { q:"Simplify 2x + 3x", options:["5x","6x","x","2x"], answer:"5x" },
+      { q:"What is a variable?", options:["Number","Letter","Symbol","Unknown"], answer:"Letter" },
+      { q:"Solve 3x = 9", options:["x=3","x=6","x=2","x=9"], answer:"x=3" },
+      { q:"Factor x^2 - 4", options:["(x-2)(x+2)","x^2","4","x-4"], answer:"(x-2)(x+2)" },
+      { q:"Expand (x+3)(x-1)", options:["x^2+2x-3","x^2-2x+3","x^2+4x-3","x^2-4x+3"], answer:"x^2+2x-3" },
+      { q:"Solve for x: 2x - 5 = 9", options:["x=7","x=5","x=14","x=2"], answer:"x=7" },
+      { q:"Coefficient of x^2 in 3x^2 + 4x + 1", options:["3","4","1","2"], answer:"3" },
+      { q:"Constant term in 3x + 5", options:["3","5","x","None"], answer:"5" },
+      { q:"What degree is the polynomial x^3 - 4x + 7?", options:["3","4","1","0"], answer:"3" },
+    ],
+    // Add other math topics...
+  },
+  // Add other subjects with topics...
+};
+
+// --- UI Navigation ---
+function showPage(p) {
+  document.querySelectorAll(".page").forEach(pg=>pg.classList.remove("active"));
+  const el = document.getElementById(p);
+  if(el) el.classList.add("active");
+  if(p==="mindmap" && selectedSubject) populateMindmapTopicsForSubject(selectedSubject);
+  if(p==="quizPage") loadQuiz();
+  if(p==="wsPage") loadWorksheet();
+}
+
+function loadSubjects() {
+  const box = document.getElementById("subjectsContainer");
+  const quick = document.getElementById("subjectsQuick");
+  box.innerHTML = "";
+  quick.innerHTML = "";
+  for (const sub in subjectTopics) {
+    box.innerHTML += `<div class="subject-card" onclick="selectSubject('${sub}')">${sub}</div>`;
+    quick.innerHTML += `<button class="topic-btn" onclick="selectSubject('${sub}')">${sub}</button>`;
+  }
+}
+loadSubjects();
+
+function selectSubject(sub) {
+  selectedSubject = sub;
+  showPage("topicPage");
+  const topicTitle = document.getElementById("topicTitle");
+  const topicButtons = document.getElementById("topicButtons");
+  topicTitle.innerText = sub + " Topics";
+  const topics = subjectTopics[sub];
+  let btns = "";
+  topics.forEach(tp => btns += `<button class="topic-btn" onclick="setTopic('${tp}')">${tp}</button>`);
+  topicButtons.innerHTML = btns;
+  mmTopicSelect.innerHTML = '<option value="">Choose topic</option>';
+  chosenTopic = "";
+}
+
+function setTopic(tp) {
+  chosenTopic = tp;
+  populateMindmapTopicsForSubject(selectedSubject, tp);
+  const prev = document.getElementById("topicToast");
+  if(prev) prev.remove();
+  const t = document.createElement("div");
+  t.id = "topicToast";
+  t.style.position = "fixed";
+  t.style.right = "20px";
+  t.style.top = "20px";
+  t.style.background = "#1346b5";
+  t.style.color = "white";
+  t.style.padding = "10px 14px";
+  t.style.borderRadius = "8px";
+  t.style.boxShadow = "0 6px 18px rgba(0,0,0,0.15)";
+  t.innerText = "Topic selected: " + tp;
+  document.body.appendChild(t);
+  setTimeout(() => { if(t) t.remove(); }, 1500);
+}
+
+function populateMindmapTopicsForSubject(subject, selectTopic) {
+  mmTopicSelect.innerHTML = '<option value="">Choose topic</option>';
+  if (detailedFlowData[subject]) {
+    Object.keys(detailedFlowData[subject]).forEach(topic => {
+      let selected = (topic === selectTopic) ? "selected" : "";
+      mmTopicSelect.innerHTML += `<option value="${topic}" ${selected}>${topic}</option>`;
+    });
+  }
+}
+
+// --- Mindmap Flowchart ---
+function loadFlowchart() {
+  const svgContainer = document.getElementById('flowSVG');
+  const diagramTitle = document.querySelector('#mindmap h2');
+  const topic = mmTopicSelect.value;
+  if (!selectedSubject) {
+    alert("Please select a subject first.");
+    return;
+  }
+  if (!topic) {
+    alert("Please select a topic from the dropdown.");
+    return;
+  }
+  const data = (detailedFlowData[selectedSubject] && detailedFlowData[selectedSubject][topic]) || [];
+  if (data.length === 0) {
+    alert("No detailed flowchart data available for this topic.");
+    return;
+  }
+  svgContainer.innerHTML = "";
+  diagramTitle.textContent = selectedSubject + " - " + topic + " Flowchart";
+  const boxWidth = 180;
+  const boxHeight = 70;
+  const verticalGap = 60;
+  const startX = 50;
+  data.forEach((text, index) => {
+    const y = index * (boxHeight + verticalGap) + 20;
+    const box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    box.setAttribute("x", startX);
+    box.setAttribute("y", y);
+    box.setAttribute("width", boxWidth);
+    box.setAttribute("height", boxHeight);
+    box.setAttribute("fill", "#bbdefb");
+    box.setAttribute("stroke", "#0d47a1");
+    box.setAttribute("rx", 10);
+    svgContainer.appendChild(box);
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.textContent = text;
+    label.setAttribute("x", startX + boxWidth / 2);
+    label.setAttribute("y", y + boxHeight / 2 + 5);
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("font-size", "14");
+    label.setAttribute("font-family", "Arial");
+    svgContainer.appendChild(label);
+    if (index < data.length - 1) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", startX + boxWidth / 2);
+      line.setAttribute("y1", y + boxHeight);
+      line.setAttribute("x2", startX + boxWidth / 2);
+      line.setAttribute("y2", y + boxHeight + verticalGap - 15);
+      line.setAttribute("stroke", "#1445b5");
+      line.setAttribute("stroke-width", 3);
+      svgContainer.appendChild(line);
+    }
+  });
+}
+
+// --- Quiz Loader ---
+function loadQuiz() {
+  const out = document.getElementById("quizOutput");
+  if (!selectedSubject || !chosenTopic) {
+    out.innerHTML = "<p>Please select a subject and topic first.</p>";
+    return;
+  }
+  const qArr = quizBank[selectedSubject]?.[chosenTopic];
+  if (!qArr) {
+    out.innerHTML = "<p>Quiz not available for this topic.</p>";
+    return;
+  }
+  out.innerHTML = "";
+  qArr.forEach((qObj, idx) => {
+    const div = document.createElement("div");
+    div.style.marginBottom = "15px";
+    const qP = document.createElement("p");
+    qP.innerText = (idx + 1) + ". " + qObj.q;
+    div.appendChild(qP);
+    qObj.options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.className = "topic-btn";
+      btn.style.marginRight = "8px";
+      btn.style.marginTop = "6px";
+      btn.innerText = opt;
+      btn.onclick = () => checkAnswer(idx, opt);
+      div.appendChild(btn);
+    });
+    out.appendChild(div);
+  });
+}
+
+function checkAnswer(idx, selected) {
+  const correct = quizBank[selectedSubject][chosenTopic][idx].answer;
+  const toast = document.createElement("div");
+  toast.style.position = "fixed";
+  toast.style.left = "50%";
+  toast.style.transform = "translateX(-50%)";
+  toast.style.bottom = "30px";
+  toast.style.padding = "12px 18px";
+  toast.style.borderRadius = "8px";
+  toast.style.color = "white";
+  toast.style.boxShadow = "0 8px 24px rgba(0,0,0,0.2)";
+  if (selected === correct) {
+    toast.style.background = "#2ecc71";
+    toast.innerText = `✅ Correct! (${selected})`;
+  } else {
+    toast.style.background = "#e74c3c";
+    toast.innerText = `❌ Wrong! Correct: ${correct}`;
+  }
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 1400);
+}
+
+// --- Worksheet Loader (can be similarly updated) ---
+function loadWorksheet(){
+  const out=document.getElementById("wsOutput");
+  const w=wsBank[selectedSubject]?.[chosenTopic];
+  if(!w){ out.innerHTML="Worksheet not available. Select a topic first."; return; }
+  out.innerHTML = `<ol>${w.map(item=>`<li style="margin-bottom:8px;">${item}</li>`).join("")}</ol>`;
+}
+
+// --- AI Chatbot ---
+
+chatBtn.onclick = sendMessage;
+
+async function sendMessage() {
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+  chatBox.innerHTML += `<div><b>You:</b> ${escapeHtml(msg)}</div>`;
+  chatInput.value = "";
+  chatBox.innerHTML += `<div><b>AI:</b> <em>Typing...</em></div>`;
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  try {
+    // Replace with your AI backend API for dynamic answers
+    const response = await fetch('YOUR_AI_API_ENDPOINT', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: msg })
+    });
+
+    const data = await response.json();
+    let reply = data.reply || "Sorry, I don't know the answer.";
+
+    // Fallback canned answers across all topics combined
+    if (!reply) {
+      let fallbackReply = "Sorry, I don't know the answer.";
+      for (const subject in quizBank) {
+        for (const topic in quizBank[subject]) {
+          const topicQA = quizBank[subject][topic];
+          const matched = topicQA.find(obj => msg.toLowerCase().includes(obj.q.toLowerCase()));
+          if (matched) {
+            fallbackReply = matched.a;
+            break;
+          }
+        }
+      }
+      reply = fallbackReply;
+    }
+    chatBox.lastChild.innerHTML = `<b>AI:</b> ${escapeHtml(reply)}`;
+  } catch (e) {
+    // On error fallback to canned for all subjects
+    let fallbackReply = "Sorry, AI service is unavailable.";
+    for (const subject in quizBank) {
+      for (const topic in quizBank[subject]) {
+        const topicQA = quizBank[subject][topic];
+        const matched = topicQA.find(obj => msg.toLowerCase().includes(obj.q.toLowerCase()));
+        if (matched) {
+          fallbackReply = matched.a;
+          break;
+        }
+      }
+    }
+    chatBox.lastChild.innerHTML = `<b>AI:</b> ${escapeHtml(fallbackReply)}`;
+  }
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// --- Initialize UI ---
+(function init() {
+  const storedName = localStorage.getItem("sterlaUser");
+  const storedRole = localStorage.getItem("sterlaRole");
+  if (storedName) {
+    welcomeUser.innerText = "Welcome, " + storedName + " ";
+    loginPage.style.display = "none";
+    appPage.style.display = "flex";
+    if (storedRole === "teacher") document.querySelectorAll(".teacher-only").forEach((el) => el.style.display = "block");
+  }
+})();
+</script>
+
+</body>
+</html>

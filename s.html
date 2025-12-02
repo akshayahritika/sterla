@@ -4,337 +4,389 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>STERLA - Smart School Companion</title>
+
 <style>
-  :root {
-    --bg-dark: #0e0e2f;
-    --bg-gradient: linear-gradient(135deg, #4b6cb7, #182848);
-    --primary-light: #7289da;
-    --primary-dark: #283593;
-    --accent: #6c63ff;
-    --white: #f4f4f9;
-    --error-red: #e55a5a;
-    --success-green: #3cd48b;
-  }
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-  html, body {
-    height: 100%;
-    background: var(--bg-dark);
-    color: var(--white);
-  }
-  /* Centered login container */
-  #loginPage {
-    height: 100vh;
-    background: var(--bg-gradient);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .login-container {
-    background: rgba(255 255 255 / 0.12);
-    padding: 30px 36px;
-    border-radius: 16px;
-    box-shadow: 0 0 20px var(--accent);
-    max-width: 360px;
-    width: 100%;
-    text-align: center;
-  }
-  .login-container h2 {
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 18px;
-  }
-  .login-container input {
-    width: 100%;
-    padding: 14px 16px;
-    margin: 12px 0;
-    border-radius: 10px;
-    border: none;
-    font-size: 1rem;
-    background: rgba(255 255 255 / 0.2);
-    color: var(--white);
-  }
-  .login-container input::placeholder {
-    color: rgba(255 255 255, 0.7);
-  }
-  .login-container button {
-    width: 100%;
-    padding: 14px 0;
-    border-radius: 12px;
-    border: none;
-    background: var(--accent);
-    color: var(--white);
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-  }
-  .login-container button:hover {
-    background: #5140d5;
-  }
-  #loginMessage {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    min-height: 18px;
-  }
-  .or-text {
-    margin: 22px 0 14px;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 1.2px;
-    color: rgba(255 255 255 / 0.75);
-  }
-  .social-login {
-    display: flex;
-    justify-content: space-between;
-  }
-  .social-btn {
-    flex: 1;
-    margin: 0 6px;
-    padding: 12px 8px;
-    border: 2px solid var(--white);
-    border-radius: 12px;
-    color: var(--white);
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.3s ease;
-  }
-  .social-btn:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--white);
-  }
+:root {
+  --bg-dark: #0e0e2f;
+  --bg-gradient: linear-gradient(135deg, #c79081, #dfa579);
+  --primary-light: #ffa726;
+  --primary-dark: #fb8c00;
+  --accent: #ff7043;
+  --white: #f4f4f9;
+  --error-red: #e55a5a;
+  --success-green: #3cd48b;
+}
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html, body {
+  height: 100%;
+  background: var(--bg-dark);
+  color: var(--white);
+}
+#loginPage {
+  height: 100vh;
+  background: var(--bg-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login-container {
+  background: rgba(255 255 255 / 0.15);
+  padding: 36px 42px;
+  border-radius: 26px;
+  box-shadow: 0 6px 30px rgba(255 117 27, 0.5);
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+.login-container h2 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 24px;
+  color: var(--primary-dark);
+}
+.login-container p {
+  margin-bottom: 26px;
+  color: #fff3e0;
+  font-weight: 500;
+}
+.login-container input {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(255 255 255 / 0.22);
+  color: var(--white);
+  box-shadow: inset 0 2px 8px rgba(255 255 255 / 0.25);
+  transition: background 0.3s ease;
+}
+.login-container input::placeholder {
+  color: rgba(255 255 255, 0.7);
+}
+.login-container input:focus {
+  outline: none;
+  background: rgba(255 255 255 / 0.3);
+}
+.login-container button {
+  width: 100%;
+  padding: 16px 0;
+  border-radius: 18px;
+  border: none;
+  background: var(--accent);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.15rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 16px rgba(255, 112, 67, 0.6);
+}
+.login-container button:hover {
+  background: #e85a3c;
+}
+#loginMessage {
+  margin-top: 14px;
+  font-size: 1rem;
+  min-height: 20px;
+  font-weight: 600;
+}
+.or-text {
+  margin: 28px 0 18px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  color: rgba(255 255 255 / 0.85);
+}
+.social-login {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.social-btn {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 112, 67, 0.6);
+  color: var(--white);
+}
+.social-btn.google {
+  background: #db4437;
+}
+.social-btn.google:hover {
+  background: #c23321;
+}
+.social-btn.facebook {
+  background: #3b5998;
+}
+.social-btn.facebook:hover {
+  background: #2d4373;
+}
+.social-btn.phone {
+  background: var(--primary-dark);
+}
+.social-btn.phone:hover {
+  background: var(--primary-light);
+}
+.skip-login {
+  margin-top:20px;
+  font-size: 1rem;
+  color: #fff3e0;
+  font-weight: 600;
+}
+.skip-login button {
+  background:none;
+  border:none;
+  color: var(--accent);
+  cursor:pointer;
+  font-weight: 700;
+  font-size: 1rem;
+}
 
-  /* Main app container */
-  #appPage {
-    display: none;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    background: var(--bg-gradient);
-  }
-  /* Sidebar */
-  #sidebar {
-    width: 260px;
-    background: var(--primary-dark);
-    padding: 28px 20px;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  #sidebar h2 {
-    font-size: 2.4rem;
-    margin-bottom: 30px;
-  }
-  .nav-btn {
-    background: transparent;
-    color: var(--white);
-    border: none;
-    padding: 16px 20px;
-    border-radius: 16px;
-    font-size: 1.2rem;
-    text-align: left;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  .nav-btn:hover {
-    background: var(--primary-light);
-  }
-  #main {
-    flex-grow: 1;
-    padding: 36px 48px;
-    overflow-y: auto;
-    color: var(--white);
-  }
-  .page {
-    display: none;
-  }
-  .page.active {
-    display: block;
-  }
-
-  /* Welcome */
-  #welcomeBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(108, 99, 255, 0.15);
-    border-radius: 24px;
-    padding: 48px;
-    margin-bottom: 32px;
-  }
-  #welcomeBox h2 {
-    font-size: 3rem;
-    max-width: 64%;
-  }
-  #welcomeBox p {
-    font-size: 1.3rem;
-    margin-top: 14px;
-    max-width: 64%;
-  }
-  #welcomeBox img {
-    width: 180px;
-    filter: drop-shadow(0 0 12px rgba(108, 99, 255, 0.7));
-  }
-
-  /* Subject Cards */
-  .subject-card {
-    padding: 22px;
-    margin: 18px 16px;
-    background: var(--bg-dark);
-    border-radius: 24px;
-    border: 2px solid var(--primary-light);
-    width: 178px;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--white);
-    transition: background 0.4s ease, color 0.4s ease;
-  }
-  .subject-card:hover {
-    background: var(--primary-light);
-    color: var(--bg-dark);
-  }
-
-  /* Topic Buttons */
-  .topic-btn {
-    padding: 16px 26px;
-    margin: 10px 8px;
-    border-radius: 26px;
-    background: var(--primary-light);
-    color: var(--white);
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-  .topic-btn:hover {
-    background: var(--accent);
-  }
-
-  /* Output Boxes */
-  .output-box {
-    background: rgba(255 255 255 / 0.1);
-    border-radius: 24px;
-    padding: 36px;
-    min-height: 260px;
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
-  .announce {
-    background: rgba(108, 99, 255, 0.15);
-    padding: 14px 24px;
-    border-radius: 20px;
-    margin-bottom: 18px;
-    font-size: 1.1rem;
-  }
-
-  /* Chat */
-  #chatBox {
-    background: rgba(255 255 255 / 0.1);
-    padding: 24px;
-    border-radius: 20px;
-    height: 460px;
-    overflow-y: auto;
-    margin-bottom: 18px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  #chatBox div {
-    margin-bottom: 14px;
-  }
-  #chatInput {
-    padding: 18px;
-    border-radius: 16px;
-    border: none;
-    width: 77%;
-    font-size: 1.1rem;
-    background: rgba(255 255 255 / 0.1);
-    color: var(--white);
-    margin-right: 12px;
-  }
-  #chatInput::placeholder {
-    color: rgba(255 255 255 / 0.6);
-  }
-  #chatBtn {
-    background: var(--accent);
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    padding: 18px 36px;
-    border-radius: 16px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background 0.3s ease;
-  }
-  #chatBtn:hover {
-    background: #6258d4;
-  }
-
-  /* Mindmap */
-  #flowArea {
-    background: rgba(255 255 255 / 0.15);
-    border-radius: 22px;
-    border: 3px solid var(--primary-light);
-    margin-top: 28px;
-    position: relative;
-    overflow: auto;
-    width: 100%;
-    height: 620px;
-  }
-  svg {
-    user-select: none;
-  }
-
-  /* Toast */
-  .toast {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 48px;
-    padding: 14px 32px;
-    border-radius: 24px;
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    z-index: 9999;
-    animation: fadein 0.3s, fadeout 0.3s 1.2s;
-  }
-  .toast-success {background: var(--success-green);}
-  .toast-error {background: var(--error-red);}
-  @keyframes fadein {from {opacity: 0;} to {opacity: 1;}}
-  @keyframes fadeout {from {opacity: 1;} to {opacity: 0;}}
+#appPage {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background: var(--bg-dark);
+}
+#sidebar {
+  width: 280px;
+  background: #2c2f48;
+  padding: 30px 24px;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.5);
+}
+#sidebar h2 {
+  font-size: 2.8rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
+  text-shadow: 0 0 10px var(--accent);
+  margin-bottom: 28px;
+}
+.nav-btn {
+  background: #42486c;
+  color: var(--white);
+  border: none;
+  padding: 20px 26px;
+  border-radius: 30px;
+  font-size: 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.nav-btn:hover {
+  background: var(--accent);
+  box-shadow: 0 12px 22px rgba(108, 99, 255, 0.8);
+}
+#main {
+  flex-grow: 1;
+  padding: 48px 64px;
+  overflow-y: auto;
+  color: var(--white);
+  background: linear-gradient(180deg, #f9f9ff 0%, #dde1f9 100%);
+}
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+#welcomeBox {
+  background: #fff;
+  border-radius: 18px;
+  padding: 48px;
+  margin-bottom: 38px;
+  box-shadow: 0 12px 28px rgba(108, 99, 255, 0.08);
+  display: grid;
+  grid-template-columns: auto 170px;
+  align-items: center;
+}
+#welcomeBox h2 {
+  font-size: 3.4rem;
+  color: #5a4fcd;
+}
+#welcomeBox p {
+  margin-top: 14px;
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #786faa;
+}
+#welcomeBox img {
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(108, 99, 255, 0.3);
+}
+.subject-card {
+  background: white;
+  border-radius: 24px;
+  padding: 28px 36px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #503f91;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(131, 118, 199, 0.3);
+  user-select: none;
+  margin: 20px 18px;
+  width: 200px;
+  transition: all 0.25s ease;
+  display: inline-block;
+  text-align: center;
+}
+.subject-card:hover {
+  color: white;
+  background: var(--accent);
+  box-shadow: 0 18px 45px rgba(108, 99, 255, 0.7);
+  transform: scale(1.05);
+}
+.topic-btn {
+  background: #e8e6fc;
+  border-radius: 28px;
+  padding: 14px 36px;
+  font-weight: 700;
+  color: #473b8b;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 18px rgba(108, 99, 255, 0.1);
+  user-select: none;
+  margin: 12px 14px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+.topic-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+.output-box {
+  background: #fff;
+  border-radius: 28px;
+  padding: 42px;
+  min-height: 280px;
+  font-size: 1.35rem;
+  line-height: 1.65;
+  box-shadow: 0 16px 30px rgba(131, 118, 199, 0.15);
+  color: #4b3da2;
+}
+.announce {
+  background: #e7e3fc;
+  border-radius: 22px;
+  padding: 18px 28px;
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  color: #7a69b8;
+  font-weight: 600;
+}
+#chatBox {
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  height: 440px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: #3a2c80;
+}
+#chatBox div {
+  margin-bottom: 16px;
+}
+#chatInput {
+  padding: 18px;
+  border-radius: 22px;
+  border: none;
+  width: 75%;
+  font-size: 1.1rem;
+  background: #f8f7ff;
+  color: #483f88;
+  margin-right: 16px;
+  box-shadow: 0 4px 12px #ccc;
+}
+#chatInput::placeholder {
+  color: #a98da0;
+}
+#chatBtn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 18px 40px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-weight: 700;
+}
+#chatBtn:hover {
+  background: #8369de;
+}
+#flowArea {
+  background: #fff;
+  border-radius: 32px;
+  margin-top: 32px;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 680px;
+  box-shadow: 0 20px 50px rgba(131, 118, 199, 0.2);
+}
+svg {
+  user-select: none;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 48px;
+  padding: 14px 32px;
+  border-radius: 24px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  z-index: 9999;
+  animation: fadein 0.3s, fadeout 0.3s 1.4s;
+}
+.toast-success {background: var(--success-green);}
+.toast-error {background: var(--error-red);}
+@keyframes fadein {from {opacity: 0;} to {opacity: 1;}}
+@keyframes fadeout {from {opacity: 1;} to {opacity: 0;}}
 </style>
+
 </head>
 <body>
+
+<!-- Facebook SDK for login -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<!-- Google API -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <div id="loginPage" aria-label="Optional login screen">
   <div class="login-container" role="form" aria-labelledby="loginTitle">
     <h2 id="loginTitle">Optional Login</h2>
-    <p>Use email/passcode or sign up via Google, Facebook or Phone. Or continue without login.</p>
+    <p>Use email/passcode or sign up via Google, Facebook, or Phone. Or continue without login.</p>
     <input type="email" id="email" placeholder="Enter Email" aria-label="Email (optional)" />
     <input type="password" id="passcode" placeholder="Enter Passcode" aria-label="Passcode (optional)" />
     <button onclick="login()">Login</button>
     <p id="loginMessage" role="alert"></p>
     <div class="or-text" aria-hidden="true">OR Sign up with</div>
     <div class="social-login" role="region" aria-label="Social login options">
-      <button class="social-btn" onclick="alert('Google login not implemented')" aria-label="Sign up with Google">Google</button>
-      <button class="social-btn" onclick="alert('Facebook login not implemented')" aria-label="Sign up with Facebook">Facebook</button>
-      <button class="social-btn" onclick="alert('Phone login not implemented')" aria-label="Sign up with Phone Number">Phone Number</button>
+      <button class="social-btn google" id="googleSignInBtn" aria-label="Sign up with Google">Google</button>
+      <button class="social-btn facebook" id="fbSignInBtn" aria-label="Sign up with Facebook">Facebook</button>
+      <button class="social-btn phone" onclick="alert('Phone login not implemented yet')" aria-label="Sign up with Phone Number">Phone Number</button>
     </div>
-    <div style="margin-top:20px; font-size:1rem; color: #ccc;">
-      Or <button style="background:none; border:none; color: var(--accent); cursor:pointer; font-weight: bold;" onclick="skipLogin()">Continue without login</button>
+    <div class="skip-login" aria-label="Continue without login option">
+      Or <button onclick="skipLogin()">Continue without login</button>
     </div>
   </div>
 </div>
@@ -353,6 +405,7 @@
   </nav>
 
   <div id="main">
+    <!-- Home Page -->
     <section id="homePage" class="page active" tabindex="-1">
       <h1 id="welcomeUser">Welcome to STERLA</h1>
       <div id="welcomeBox" class="glass" role="region" aria-label="Welcome message and quick instructions">
@@ -368,6 +421,7 @@
       </div>
     </section>
 
+    <!-- Dashboard Page -->
     <section id="dashboard" class="page" tabindex="-1">
       <h1>Dashboard</h1>
       <h2>Announcements</h2>
@@ -376,16 +430,19 @@
       <div class="announce">• Math homework submission closes tonight</div>
     </section>
 
+    <!-- Subjects Page -->
     <section id="subjectsPage" class="page" tabindex="-1">
       <h1>Select a Subject</h1>
       <div id="subjectsContainer"></div>
     </section>
 
+    <!-- Topic Page -->
     <section id="topicPage" class="page" tabindex="-1">
       <h1 id="topicTitle"></h1>
       <div id="topicButtons"></div>
     </section>
 
+    <!-- Mindmap Page -->
     <section id="mindmap" class="page" tabindex="-1">
       <h2>Flowchart Generator</h2>
       <label for="mmTopic">Select Topic:</label>
@@ -396,21 +453,25 @@
       </div>
     </section>
 
+    <!-- Quiz Page -->
     <section id="quizPage" class="page" tabindex="-1">
       <h1>Quiz</h1>
       <div class="output-box" id="quizOutput"></div>
     </section>
 
+    <!-- Worksheet Page -->
     <section id="wsPage" class="page" tabindex="-1">
       <h1>Worksheet</h1>
       <div class="output-box" id="wsOutput"></div>
     </section>
 
+    <!-- Teacher Panel Page -->
     <section id="managePage" class="page teacher-only" tabindex="-1">
       <h1>Teacher Panel</h1>
       <p>Here you can upload worksheets, add quizzes, view submissions, manage announcements.</p>
     </section>
 
+    <!-- AI Chat Page -->
     <section id="aiChatPage" class="page" tabindex="-1">
       <h1>AI Chat Assistant</h1>
       <div id="chatBox" aria-live="polite" aria-atomic="true"></div>
@@ -421,34 +482,449 @@
 </div>
 
 <script>
-  // Startup popup
-  window.onload = function() {
-    if(confirm("Do you want to see our paid promotion?")){
-      alert("Thank you for your interest! Visit our sponsor for awesome deals.");
+// Facebook SDK Init
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : 'YOUR_FACEBOOK_APP_ID', // Replace with your Facebook App ID
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v15.0'
+  });
+};
+
+// Load FB SDK Script (if not already included, ensure only once)
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if(d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+const googleSignInBtn = document.getElementById("googleSignInBtn");
+const fbSignInBtn = document.getElementById("fbSignInBtn");
+
+googleSignInBtn.onclick = () => {
+  // Demo prompt, replace with actual Google Sign-In API code in production.
+  alert("Google sign-in simulated in this demo app.");
+  onLoginSuccess("Google User");
+};
+
+fbSignInBtn.onclick = () => {
+  FB.login(function(response) {
+    if (response.authResponse) {
+      FB.api('/me', {fields: 'name,email'}, function(profile) {
+        onLoginSuccess(profile.name || profile.email || "Facebook User");
+      });
+    } else {
+      alert('Facebook login cancelled or failed.');
     }
-    loadSubjects();
-  };
+  }, {scope: 'email'});
+};
 
-  // Elements
-  const loginPage = document.getElementById("loginPage");
-  const appPage = document.getElementById("appPage");
-  const emailInput = document.getElementById("email");
-  const passcodeInput = document.getElementById("passcode");
+function login(){
+  const email = document.getElementById("email").value.trim();
+  const passcode = document.getElementById("passcode").value.trim();
   const loginMsg = document.getElementById("loginMessage");
-  const subjectsQuick = document.getElementById("subjectsQuick");
-  const topicTitle = document.getElementById("topicTitle");
-  const topicButtons = document.getElementById("topicButtons");
-  const chatBtn = document.getElementById("chatBtn");
-  const chatInput = document.getElementById("chatInput");
-  const chatBox = document.getElementById("chatBox");
-  const mmTopicSelect = document.getElementById("mmTopic");
-  const svgContainer = document.getElementById("flowSVG");
-  const diagramTitle = document.querySelector("#mindmap h2");
-  const welcomeUser = document.getElementById("welcomeUser");
+  loginMsg.textContent = "";
+  if (!email && !passcode) {
+    loginMsg.textContent = "Please enter email and passcode or use social sign-in.";
+    loginMsg.style.color = 'var(--error-red)';
+    return;
+  }
+  if (!email || !passcode) {
+    loginMsg.textContent = "Both email and passcode are required.";
+    loginMsg.style.color = '#e55a5a';
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    loginMsg.textContent = "Please enter a valid email address.";
+    loginMsg.style.color = '#e55a5a';
+    return;
+  }
+  // Demo accepts any non-empty passcode
+  onLoginSuccess(email);
+}
 
-  // Simple subject/topic data (expand as needed)
-  const subjectTopics = {
-    English: ["Grammar", "Formal Letter", "Speech", "Prose"],
-    Math: ["Algebra", "Linear Equations", "Mensuration"],
-    Science: ["Reproduction in Animals", "Sound", "Electricity"],
-    "Social Science":
+function skipLogin(){
+  onLoginSuccess(null);
+}
+
+function onLoginSuccess(name){
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("appPage").style.display = "flex";
+  const welcomeUser = document.getElementById("welcomeUser");
+  if(name){
+    welcomeUser.textContent = `Welcome, ${name}!`;
+  }else{
+    welcomeUser.textContent = "Welcome to STERLA (guest)";
+  }
+  showPage('homePage');
+  loadSubjects();
+}
+
+// SPA framework helpers and data
+
+let selectedSubject = "";
+let chosenTopic = "";
+
+const subjectTopics = {
+  English: ["Grammar", "Formal Letter", "Speech", "Prose"],
+  Math: ["Algebra", "Linear Equations", "Mensuration"],
+  Science: ["Reproduction in Animals", "Sound", "Electricity"],
+  "Social Science": ["1857 Revolt", "Resources", "Judiciary"],
+  Hindi: ["Vyakaran", "Patra Lekhan"],
+  Computer: ["HTML", "AI Basics"],
+  Sanskrit: ["Shabd Roop", "Dhatu Roop"],
+  French: ["French Grammar", "Culture"],
+  ICT: ["Networks", "Cybersecurity"],
+};
+
+const detailedFlowData = {
+  English: {
+    Grammar: ["Parts of Speech", "Sentence Structure", "Tenses", "Punctuation", "Usage Rules"],
+    "Formal Letter": ["Sender Address", "Date", "Receiver Address", "Subject", "Salutation", "Body Paragraphs", "Closing"],
+    Speech: ["Introduction", "Body Points", "Conclusion", "Eye Contact", "Gestures", "Voice Modulation"],
+    Prose: ["Paragraphs", "Characters", "Storyline", "Dialogue", "Narrative Flow"]
+  },
+  Math: {
+    Algebra: ["Variables", "Expressions", "Equations", "Inequalities", "Functions"],
+    "Linear Equations": ["Solving Methods", "Graphing", "Application"],
+    Mensuration: ["Area", "Volume", "Surface Area", "Perimeter"]
+  }
+  // Add more if required
+};
+
+const quizBank = {
+  English: {
+    Grammar: [
+      { q: "Which of the following is a noun?", options: ["run", "dog", "quickly", "beautiful"], answer: "dog" },
+      { q: "Identify the verb in the sentence.", options: ["is", "happy", "table", "red"], answer: "is" },
+      { q: "What is an adjective?", options: ["A describing word", "A doing word", "A place", "A person"], answer: "A describing word" }
+    ]
+    // Add more topics/quizzes
+  }
+};
+
+const wsBank = {
+  English: {
+    Grammar: [
+      "Write 5 nouns.",
+      "Write 5 verbs.",
+      "Identify parts of speech in a sentence.",
+      "Form 5 adverbs.",
+      "Write 3 complex sentences."
+    ]
+  }
+};
+
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const el = document.getElementById(pageId);
+  if (el) el.classList.add("active");
+  if (pageId === "subjectsPage") loadSubjects();
+  if (pageId === "topicPage") renderTopics();
+  if (pageId === "mindmap") populateMindmapTopics();
+  if (pageId === "quizPage") loadQuiz();
+  if (pageId === "wsPage") loadWorksheet();
+}
+
+function loadSubjects() {
+  const container = document.getElementById("subjectsContainer");
+  const quick = document.getElementById("subjectsQuick");
+  container.innerHTML = "";
+  quick.innerHTML = "";
+  Object.keys(subjectTopics).forEach(sub => {
+    container.innerHTML += `<div class="subject-card" onclick="selectSubject('${sub}')">${sub}</div>`;
+    quick.innerHTML += `<button class="topic-btn" onclick="selectSubject('${sub}')">${sub}</button>`;
+  });
+}
+
+function selectSubject(sub) {
+  selectedSubject = sub;
+  chosenTopic = "";
+  document.getElementById("topicTitle").innerText = `${sub} Topics`;
+  showPage("topicPage");
+  renderTopics();
+}
+
+function renderTopics() {
+  if (!selectedSubject) return;
+  const container = document.getElementById("topicButtons");
+  container.innerHTML = "";
+  subjectTopics[selectedSubject].forEach(tp => {
+    container.innerHTML += `<button class="topic-btn" onclick="selectTopic('${tp}')">${tp}</button>`;
+  });
+}
+
+function selectTopic(tp) {
+  chosenTopic = tp;
+  showPage("mindmap");
+  populateMindmapTopics();
+  toast(`Topic selected: ${tp}`);
+}
+
+function populateMindmapTopics() {
+  const select = document.getElementById("mmTopic");
+  select.innerHTML = '<option value="">Choose topic</option>';
+  if (selectedSubject && subjectTopics[selectedSubject]) {
+    subjectTopics[selectedSubject].forEach(topic => {
+      const selected = topic === chosenTopic ? "selected" : "";
+      select.innerHTML += `<option value="${topic}" ${selected}>${topic}</option>`;
+    });
+  }
+}
+
+function loadFlowchart() {
+  const topic = document.getElementById("mmTopic").value || chosenTopic;
+  if (!topic) return alert("Please select a topic.");
+  const data = (detailedFlowData[selectedSubject] && detailedFlowData[selectedSubject][topic]) || [];
+  if (!data.length) return alert("No flowchart data available.");
+  const svg = document.getElementById("flowSVG");
+  svg.innerHTML = "";
+  const boxW = 250, boxH = 70, gap = 60, startX = 150;
+  data.forEach((text, i) => {
+    const y = i * (boxH + gap) + 20;
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", startX);
+    rect.setAttribute("y", y);
+    rect.setAttribute("width", boxW);
+    rect.setAttribute("height", boxH);
+    rect.setAttribute("fill", "#c79081");
+    rect.setAttribute("stroke", "#dfa579");
+    rect.setAttribute("rx", "12");
+    svg.appendChild(rect);
+
+    const textEl = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    textEl.textContent = text;
+    textEl.setAttribute("x", startX + boxW / 2);
+    textEl.setAttribute("y", y + boxH / 2 + 6);
+    textEl.setAttribute("font-family", "Poppins, sans-serif");
+    textEl.setAttribute("text-anchor", "middle");
+    textEl.setAttribute("fill", "white");
+    textEl.setAttribute("font-size", "16");
+    svg.appendChild(textEl);
+
+    if (i < data.length - 1) {
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", startX + boxW / 2);
+      line.setAttribute("y1", y + boxH);
+      line.setAttribute("x2", startX + boxW / 2);
+      line.setAttribute("y2", y + boxH + gap - 24);
+      line.setAttribute("stroke", "#dfa579");
+      line.setAttribute("stroke-width", 4);
+      svg.appendChild(line);
+    }
+  });
+}
+
+function loadQuiz() {
+  const container = document.getElementById("quizOutput");
+  container.innerHTML = "";
+  if (!selectedSubject || !chosenTopic) {
+    container.innerHTML = "<p>Please select a subject and topic first.</p>";
+    return;
+  }
+  let qlist = quizBank[selectedSubject] && quizBank[selectedSubject][chosenTopic];
+  if (!qlist) {
+    container.innerHTML = "<p>Quiz not available for this topic.</p>";
+    return;
+  }
+  qlist.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.style.marginBottom = "20px";
+    div.innerHTML = `<p>${i + 1}. ${q.q}</p>`;
+    q.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "topic-btn";
+      btn.style.marginRight = "10px";
+      btn.textContent = opt;
+      btn.onclick = () => {
+        showToast(opt === q.answer ? "Correct!" : `Wrong! Correct: ${q.answer}`, opt === q.answer);
+      };
+      div.appendChild(btn);
+    });
+    container.appendChild(div);
+  });
+}
+
+function loadWorksheet() {
+  const container = document.getElementById("wsOutput");
+  container.innerHTML = "";
+  if (!selectedSubject || !chosenTopic) {
+    container.textContent = "Please select a subject and topic first.";
+    return;
+  }
+  let wlist = wsBank[selectedSubject] && wsBank[selectedSubject][chosenTopic];
+  if (!wlist) {
+    container.textContent = "Worksheet not available for this topic.";
+    return;
+  }
+  container.innerHTML = "<ol>" + wlist.map(item => `<li>${item}</li>`).join("") + "</ol>";
+}
+
+function showToast(message, success = false) {
+  const toast = document.createElement("div");
+  toast.className = "toast " + (success ? "toast-success" : "toast-error");
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 1600);
+}
+
+// AI Chat handlers
+const chatBox = document.getElementById("chatBox");
+const chatInput = document.getElementById("chatInput");
+document.getElementById("chatBtn").onclick = function () {
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+  chatBox.innerHTML += `<div><b>You:</b> ${escapeHtml(msg)}</div>`;
+  chatInput.value = "";
+  setTimeout(() => {
+    chatBox.innerHTML += `<div><b>AI:</b> Sorry, I cannot answer that yet.</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+};
+
+function escapeHtml(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Navigation helper
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const el = document.getElementById(pageId);
+  if (el) el.classList.add("active");
+  if (pageId === "subjectsPage") loadSubjects();
+  if (pageId === "topicPage") renderTopics();
+  if (pageId === "mindmap") populateMindmapTopics();
+  if (pageId === "quizPage") loadQuiz();
+  if (pageId === "wsPage") loadWorksheet();
+}
+
+// Subjects quick selection
+function loadSubjects() {
+  const container = document.getElementById("subjectsContainer");
+  const quick = document.getElementById("subjectsQuick");
+  container.innerHTML = "";
+  quick.innerHTML = "";
+  Object.keys(subjectTopics).forEach(sub => {
+    container.innerHTML += `<div class="subject-card" onclick="selectSubject('${sub}')">${sub}</div>`;
+    quick.innerHTML += `<button class="topic-btn" onclick="selectSubject('${sub}')">${sub}</button>`;
+  });
+}
+
+function selectSubject(sub) {
+  selectedSubject = sub;
+  chosenTopic = "";
+  document.getElementById("topicTitle").innerText = `${sub} Topics`;
+  showPage("topicPage");
+  renderTopics();
+}
+
+function renderTopics() {
+  if (!selectedSubject) return;
+  const container = document.getElementById("topicButtons");
+  container.innerHTML = "";
+  subjectTopics[selectedSubject].forEach(tp => {
+    container.innerHTML += `<button class="topic-btn" onclick="selectTopic('${tp}')">${tp}</button>`;
+  });
+}
+
+function selectTopic(tp) {
+  chosenTopic = tp;
+  showPage("mindmap");
+  populateMindmapTopics();
+  showToast(`Topic selected: ${tp}`, true);
+}
+
+function skipLogin() {
+  onLoginSuccess(null);
+}
+
+function onLoginSuccess(name) {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("appPage").style.display = "flex";
+  const welcomeUser = document.getElementById("welcomeUser");
+  if (name) {
+    welcomeUser.textContent = `Welcome, ${name}!`;
+  } else {
+    welcomeUser.textContent = "Welcome to STERLA (guest)";
+  }
+  showPage('homePage');
+  loadSubjects();
+}
+
+// Paid promotion popup
+window.onload = function () {
+  if (confirm("Do you want to see our paid promotion?")) {
+    alert("Thank you for your interest! Visit our sponsor for awesome deals.");
+  }
+  loadSubjects();
+};
+
+// Facebook SDK initialization
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: 'YOUR_FACEBOOK_APP_ID', // Change to your Facebook App ID
+    cookie: true,
+    xfbml: true,
+    version: 'v15.0'
+  });
+};
+
+(function (d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+// Facebook login button
+document.getElementById("fbSignInBtn").onclick = function () {
+  FB.login(function (response) {
+    if (response.authResponse) {
+      FB.api('/me', { fields: 'name,email' }, function (profile) {
+        onLoginSuccess(profile.name || profile.email || "Facebook User");
+      });
+    } else {
+      alert('Facebook login cancelled or failed.');
+    }
+  }, { scope: 'email' });
+};
+
+// Google login button (simulation)
+document.getElementById("googleSignInBtn").onclick = function () {
+  alert("Google sign-in simulated in this demo.");
+  onLoginSuccess("Google User");
+};
+
+// Login with email/passcode validation
+function login() {
+  const email = document.getElementById("email").value.trim();
+  const passcode = document.getElementById("passcode").value.trim();
+  const loginMsg = document.getElementById("loginMessage");
+  loginMsg.textContent = "";
+  if (!email && !passcode) {
+    loginMsg.textContent = "Please enter email and passcode or use social sign-in.";
+    loginMsg.style.color = 'var(--error-red)';
+    return;
+  }
+  if (!email || !passcode) {
+    loginMsg.textContent = "Both email and passcode are required.";
+    loginMsg.style.color = '#e55a5a';
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    loginMsg.textContent = "Please enter a valid email address.";
+    loginMsg.style.color = '#e55a5a';
+    return;
+  }
+  onLoginSuccess(email);
+}
+
+</script>
+
+</body>
+</html>

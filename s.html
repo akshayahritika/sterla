@@ -850,43 +850,198 @@ const detailedFlowData = {
 };
 
 const quizBank = {
-  English: {
-    Grammar: [
-      { q: "Which of the following is a noun?", options: ["run", "dog", "quickly", "beautiful"], answer: "dog" },
-      { q: "Identify the verb in the sentence.", options: ["is", "happy", "table", "red"], answer: "is" },
-      { q: "What is an adjective?", options: ["A describing word", "A doing word", "A place", "A person"], answer: "A describing word" },
-      { q: "Choose the correct plural form of 'mouse'.", options: ["mouses", "mice", "mouse", "moose"], answer: "mice" },
-      { q: "Which is a token of proper noun?", options: ["India", "city", "mountain", "river"], answer: "India" },
-      { q: "Select the adverb:", options: ["happy", "runs", "quickly", "car"], answer: "quickly" },
-      { q: "Which sentence is in past tense?", options: ["He runs", "He ran", "He run", "He running"], answer: "He ran" },
-      { q: "Identify the pronoun in the sentence.", options: ["dog", "he", "run", "quick"], answer: "he" },
-      { q: "Find the preposition:", options: ["on", "run", "quick", "big"], answer: "on" },
-      { q: "Pick the conjunction:", options: ["and", "run", "quickly", "big"], answer: "and" },
-    ],
-    // Add other topics as needed
-  },
-  // Add other subjects and topics similarly
+ const quizBank = {
+
+  "Grammar":[
+
+    { q:"Which of the following is a noun?", options:["run","dog","quickly","beautiful"], answer:"dog" },
+
+    { q:"Identify the verb in the sentence.", options:["is","happy","table","red"], answer:"is" },
+
+    { q:"What is an adjective?", options:["A describing word","A doing word","A place","A person"], answer:"A describing word" }
+
+  ],
+
+  "Formal Letter":[
+
+    {q:"Which salutation is correct?", options:["Dear Sir","Hi buddy","Hey","Yo"], answer:"Dear Sir"},
+
+    {q:"Where does the date appear?", options:["Top right","Bottom left","Middle","Nowhere"], answer:"Top right"}
+
+  ],
+
+  "Speech":[
+
+    {q:"Opening of speech should be?", options:["Attention grabber","Random word","Slang","Silent start"], answer:"Attention grabber"},
+
+    {q:"How to conclude speech?", options:["Summarize & end memorably","Stop abruptly","Say random joke","Ignore"], answer:"Summarize & end memorably"}
+
+  ],
+
+  "Prose":[
+
+    {q:"Prose is written in?", options:["Ordinary grammatical structure","Verse form","Poetry","Haiku"], answer:"Ordinary grammatical structure"},
+
+    {q:"Does prose contain verses?", options:["No","Yes","Sometimes","Only poems"], answer:"No"}
+
+  ],
+
+  "Algebra":[
+
+    {q:"Solve x + 5 = 12", options:["x=7","x=17","x=5","x=12"], answer:"x=7"},
+
+    {q:"Simplify 2x + 3x", options:["5x","6x","x","2x"], answer:"5x"}
+
+  ],
+
+  "Linear Equations":[
+
+    {q:"Solve 2x + 3 = 7", options:["x=2","x=5","x=3","x=1"], answer:"x=2"},
+
+    {q:"Equation y = 2x + 1 forms?", options:["Straight line","Curve","Circle","Random"], answer:"Straight line"}
+
+  ],
+
+  "Mensuration":[
+
+    {q:"Find area of rectangle 5x7 cm?", options:["35","12","57","None"], answer:"35"},
+
+    {q:"Volume of cube side 4cm?", options:["64","16","12","8"], answer:"64"}
+
+  ],
+
+  "Reproduction in Animals":[
+
+    {q:"Two types of reproduction?", options:["Sexual & Asexual","Only sexual","Only asexual","None"], answer:"Sexual & Asexual"},
+
+    {q:"Fertilization occurs in?", options:["Animals & plants","Only animals","Only plants","None"], answer:"Animals & plants"}
+
+  ],
+
+  "Sound":[
+
+    {q:"Sound is?", options:["Vibration","Color","Light","Force"], answer:"Vibration"},
+
+    {q:"Speed of sound depends on?", options:["Medium","Color","Shape","Time"], answer:"Medium"}
+
+  ],
+
+  "Electricity":[
+
+    {q:"Ohm's law formula?", options:["V=IR","V+IR","VI=R","None"], answer:"V=IR"},
+
+    {q:"Series circuit has?", options:["Same current","Same voltage","Both","None"], answer:"Same current"}
+
+  ],
+
+  "1857 Revolt":[
+
+    {q:"First War of Independence year?", options:["1857","1757","1947","1800"], answer:"1857"},
+
+    {q:"Leader of revolt?", options:["Mangal Pandey","Nehru","Gandhi","Tipu Sultan"], answer:"Mangal Pandey"}
+
+  ],
+
+  "Resources":[
+
+    {q:"Renewable resource example?", options:["Solar energy","Coal","Oil","Gas"], answer:"Solar energy"},
+
+    {q:"Non-renewable resource?", options:["Coal","Sunlight","Wind","Water"], answer:"Coal"}
+
+  ],
+
+  "Judiciary":[
+
+    {q:"Highest court in India?", options:["Supreme Court","High Court","District Court","None"], answer:"Supreme Court"},
+
+    {q:"Independent judiciary protects?", options:["Rights","Money","Food","Vehicles"], answer:"Rights"}
+
+  ],
+
+  "Vyakaran":[
+
+    {q:"Sandhi is?", options:["Joining of words","Verb","Noun","Adjective"], answer:"Joining of words"},
+
+    {q:"Correct gender usage?", options:["Masculine/Feminine","Singular only","Plural only","None"], answer:"Masculine/Feminine"}
+
+  ],
+
+  "Patra Lekhan":[
+
+    {q:"Formal letter closing?", options:["Yours sincerely","Bye","Cheers","Later"], answer:"Yours sincerely"},
+
+    {q:"Should slang be used?", options:["No","Yes","Sometimes","Optional"], answer:"No"}
+
+  ],
+
+  "HTML":[
+
+    {q:"HTML stands for?", options:["HyperText Markup Language","HighText Modern Language","Hyper Tool Markup Language","None"], answer:"HyperText Markup Language"},
+
+    {q:"Tag for paragraph?", options:["<p>","<h1>","<img>","<a>"], answer:"<p>"}
+
+  ],
+
+  "AI Basics":[
+
+    {q:"AI stands for?", options:["Artificial Intelligence","Automated Input","Artificial Interface","None"], answer:"Artificial Intelligence"},
+
+    {q:"Narrow AI example?", options:["Chatbot","Self-driving car","Human brain","All"], answer:"Chatbot"}
+
+  ],
+
+  "Shabd Roop":[
+
+    {q:"Shabd Roop studies?", options:["Word forms","Colors","Animals","Numbers"], answer:"Word forms"},
+
+    {q:"Helps in?", options:["Sentence formation","Cooking","Music","Painting"], answer:"Sentence formation"}
+
+  ],
+
+  "Dhatu Roop":[
+
+    {q:"Dhatu Roop is about?", options:["Verb roots","Nouns","Adjectives","Adverbs"], answer:"Verb roots"},
+
+    {q:"Used for?", options:["Sentence construction","Painting","Drawing","Music"], answer:"Sentence construction"}
+
+  ],
+
+  "French Grammar":[
+
+    {q:"French grammar includes?", options:["Articles, nouns, verbs","Colors","Music","Dance"], answer:"Articles, nouns, verbs"},
+
+    {q:"Tense example?", options:["Present","Past","Future","All"], answer:"All"}
+
+  ],
+
+  "Culture":[
+
+    {q:"French culture includes?", options:["Traditions, food, art","Cars","Technology","Animals"], answer:"Traditions, food, art"},
+
+    {q:"Helps in?", options:["Communication","Sports","Mathematics","Physics"], answer:"Communication"}
+
+  ],
+
+  "Networks":[
+
+    {q:"Network connects?", options:["Computers","People","Books","Animals"], answer:"Computers"},
+
+    {q:"Purpose?", options:["Share data","Cook","Sleep","Run"], answer:"Share data"}
+
+  ],
+
+  "Cybersecurity":[
+
+    {q:"Cybersecurity protects?", options:["Computers & networks","Plants","Animals","Buildings"], answer:"Computers & networks"},
+
+    {q:"Threat example?", options:["Hacking","Cooking","Running","Painting"], answer:"Hacking"}
+
+  ]
+
 };
 
 const wsBank = {
-  English: {
-    Grammar: [
-      "1. Write 5 nouns.",
-      "2. Write 5 verbs.",
-      "3. Identify parts of speech in a sentence.",
-      "4. Form 5 adverbs.",
-      "5. Write 3 complex sentences.",
-      "6. Identify adjectives in a paragraph.",
-      "7. Create sentences using conjunctions.",
-      "8. Correct verb tenses in 5 sentences.",
-      "9. Write a short story using all parts of speech.",
-      "10. Punctuate a given paragraph correctly.",
-    ],
-    // Add other topics as needed
-  },
-  // Add other subjects and topics similarly
-};
-
+  
 // SPA Navigation and UI Helper Functions
 function showPage(p) {
   document.querySelectorAll(".page").forEach((pg) => pg.classList.remove("active"));
@@ -1090,9 +1245,33 @@ async function sendMessage() {
   chatInput.value = "";
   chatBox.innerHTML += `<div><b>AI:</b> <em>Typing...</em></div>`;
   chatBox.scrollTop = chatBox.scrollHeight;
-  try {
-    // Replace 'YOUR_AI_API_ENDPOINT' with real AI backend URL
-    const response = await fetch("YOUR_AI_API_ENDPOINT", {
+  {const aiBank = 
+  "Grammar":[{q:"noun",a:"A noun is a person, place, thing, or idea."},{q:"verb",a:"A verb is an action or state of being."}],
+  "Formal Letter":[{q:"formal",a:"A formal letter is written in a professional tone for official purposes."}],
+  "Speech":[{q:"speech",a:"A speech is a talk delivered to an audience with a clear structure."}],
+  "Prose":[{q:"prose",a:"Prose is ordinary written language without metrical structure."}],
+  "Algebra":[{q:"solve",a:"To solve x+5=12 subtract 5 from both sides so x=7."}],
+  "Linear Equations":[{q:"linear",a:"A linear equation has variables to the power 1 and graphs as a straight line."}],
+  "Mensuration":[{q:"area",a:"Mensuration includes area, perimeter and volume formulas for shapes."}],
+  "Reproduction in Animals":[{q:"reproduction",a:"Reproduction produces new organisms; types include sexual and asexual."}],
+  "Sound":[{q:"sound",a:"Sound is a vibration that travels through a medium."}],
+  "Electricity":[{q:"electricity",a:"Electricity is the flow of electric charge; V = IR (Ohm's law)."}],
+  "1857 Revolt":[{q:"1857",a:"The 1857 Revolt was a large-scale uprising against British rule in India."}],
+  "Resources":[{q:"resources",a:"Resources are materials (renewable or non-renewable) used by humans."}],
+  "Judiciary":[{q:"judiciary",a:"The judiciary interprets and applies the law through courts."}],
+  "Vyakaran":[{q:"vyakaran",a:"Vyakaran means grammar in Hindi; it covers rules of language."}],
+  "Patra Lekhan":[{q:"patra",a:"Patra Lekhan is letter-writing in Hindi, formal or informal formats."}],
+  "HTML":[{q:"html",a:"HTML structures web content using tags like <p>, <h1>, <a>."}],
+  "AI Basics":[{q:"ai",a:"AI is the simulation of human intelligence in machines."}],
+  "Shabd Roop":[{q:"shabd",a:"Shabd Roop studies different forms of words in Sanskrit."}],
+  "Dhatu Roop":[{q:"dhatu",a:"Dhatu Roop deals with verb root forms and their conjugations."}],
+  "French Grammar":[{q:"french",a:"French grammar covers articles, nouns, adjectives, and verb conjugations."}],
+  "Culture":[{q:"culture",a:"French culture includes food, art, festivals, and social etiquette."}],
+  "Networks":[{q:"networks",a:"Networks connect devices so they can share data and resources."}],
+  "Cybersecurity":[{q:"cyber",a:"Cybersecurity protects systems and data from digital threats."}]
+};
+
+
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: msg }),
@@ -1139,49 +1318,4 @@ function escapeHtml(text) {
 </body>
 </html>
 
-   {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: msg }),
-    });
-    const data = await response.json();
-    let reply = data.reply || "Sorry, I don't know the answer.";
-    if (!reply) {
-      reply = findFallbackAnswer(msg);
-    }
-    chatBox.lastChild.innerHTML = `<b>AI:</b> ${escapeHtml(reply)}`;
-  } catch (e) {
-    chatBox.lastChild.innerHTML = `<b>AI:</b> ${escapeHtml(findFallbackAnswer(msg) || "AI service unavailable.")}`;
-  }
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function findFallbackAnswer(msg) {
-  for (const subject in quizBank) {
-    for (const topic in quizBank[subject]) {
-      const topicQA = quizBank[subject][topic];
-      const matched = topicQA.find((obj) => msg.toLowerCase().includes(obj.q.toLowerCase()));
-      if (matched) return matched.a;
-    }
-  }
-  return null;
-}
-
-function escapeHtml(text) {
-  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-// Initial UI
-(function init() {
-  const storedName = localStorage.getItem("sterlaUser");
-  const storedRole = localStorage.getItem("sterlaRole");
-  if (storedName) {
-    welcomeUser.innerText = "Welcome, " + storedName + " ";
-    loginPage.style.display = "none";
-    appPage.style.display = "flex";
-    if (storedRole === "teacher") document.querySelectorAll(".teacher-only").forEach((el) => (el.style.display = "block"));
-  }
-})();
-</script>
-</body>
-</html>
+ 
